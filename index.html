@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jardim Estações — Flores Permanentes Artesanais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: #faf6f1;
+  color: #2f382a;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ─── TOKENS ────────────────────────────────────────────────── */
+:root {
+  --forest:  #2f382a;
+  --sage-dk: #5f6f52;
+  --sage:    #a3af9a;
+  --sage-lt: #f0f4ec;
+  --cream:   #faf6f1;
+  --white:   #ffffff;
+  --gold:    #b8956a;
+  --radius:  16px;
+}
+
+/* ─── UTILITY ────────────────────────────────────────────────── */
+.eyebrow {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sage-dk);
+  margin-bottom: 14px;
+}
+.serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--forest);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 15px 34px; border: none; border-radius: 60px;
+  cursor: pointer; transition: background .25s, transform .2s;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--sage-dk); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 14px 30px;
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 60px; cursor: pointer;
+  transition: background .25s, border-color .25s;
+  text-decoration: none;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+.btn-wpp {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #25D366; color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 16px 40px; border: none; border-radius: 60px;
+  cursor: pointer; transition: background .25s, transform .2s;
+  text-decoration: none;
+}
+.btn-wpp:hover { background: #1da854; transform: translateY(-2px); }
+.btn-wpp svg { flex-shrink: 0; }
+
+/* ─── NAV ────────────────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 22px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .4s, padding .4s, backdrop-filter .4s;
+}
+.nav.scrolled {
+  background: rgba(47,56,42,0.97);
+  backdrop-filter: blur(12px);
+  padding: 16px 60px;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 24px; font-weight: 400;
+  letter-spacing: 0.08em; color: #fff;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--sage); font-style: italic; }
+.nav-links {
+  display: flex; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  background: transparent; color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 60px; cursor: pointer;
+  transition: background .25s, border-color .25s;
+}
+.nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.7); }
+
+/* ─── HERO ────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%; height: 100vh; min-height: 680px;
+  overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero-video-wrap {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(20,24,18,0.72) 0%,
+    rgba(20,24,18,0.52) 45%,
+    rgba(20,24,18,0.18) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 620px;
+  padding: 0 60px;
+  margin-top: 40px;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(163,175,154,0.22);
+  border: 1px solid rgba(163,175,154,0.45);
+  color: var(--sage);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 7px 18px; border-radius: 60px;
+  margin-bottom: 28px;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 300; line-height: 1.05;
+  color: #fff; margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.hero-title em {
+  font-style: italic; color: var(--sage);
+  display: block;
+}
+.hero-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.72);
+  max-width: 420px; margin-bottom: 44px;
+  line-height: 1.8;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero-scroll span {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; font-weight: 400; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollpulse 2s ease-in-out infinite;
+}
+@keyframes scrollpulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.15); }
+}
+
+/* ─── BRAND BAR ──────────────────────────────────────────────── */
+.brand-bar {
+  background: var(--forest);
+  padding: 20px 60px;
+  display: flex; align-items: center; justify-content: center; gap: 60px;
+  overflow: hidden;
+}
+.brand-bar-item {
+  display: flex; align-items: center; gap: 12px;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.brand-bar-item svg { opacity: 0.5; flex-shrink: 0; }
+.brand-bar-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
+/* ─── ABOUT ──────────────────────────────────────────────────── */
+.about {
+  padding: 120px 60px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; background: var(--cream);
+}
+.about-image-wrap {
+  position: relative;
+}
+.about-img {
+  width: 100%; aspect-ratio: 4/5;
+  object-fit: cover; object-position: center;
+  border-radius: 200px 200px 24px 24px;
+  display: block;
+}
+.about-badge {
+  position: absolute; bottom: 32px; right: -24px;
+  background: var(--forest); color: var(--cream);
+  padding: 20px 24px; border-radius: 16px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.about-badge strong {
+  display: block; font-size: 36px; font-weight: 300;
+  line-height: 1; color: var(--sage);
+}
+.about-badge span {
+  font-size: 13px; font-style: italic; color: rgba(240,244,236,0.65);
+}
+.about-text {}
+.about-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300; line-height: 1.15;
+  color: var(--forest); margin-bottom: 28px;
+}
+.about-title em { font-style: italic; color: var(--sage-dk); }
+.about-body {
+  font-family: 'Jost', sans-serif;
+  font-size: 15px; font-weight: 300;
+  color: #5a5a50; line-height: 1.9;
+  margin-bottom: 20px;
+}
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.about-tag {
+  background: var(--sage-lt);
+  color: var(--sage-dk);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 8px 18px; border-radius: 60px;
+}
+.about-cta { margin-top: 40px; }
+
+/* ─── SECTION HEADING ─────────────────────────────────────────── */
+.section-head {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-head h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(38px, 4.5vw, 62px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--forest);
+}
+.section-head h2 em { font-style: italic; color: var(--sage-dk); }
+.section-head p {
+  font-family: 'Jost', sans-serif;
+  font-size: 15px; font-weight: 300;
+  color: #7a7a6e; margin-top: 16px;
+  max-width: 520px; margin-left: auto; margin-right: auto;
+}
+
+/* ─── CATÁLOGO ────────────────────────────────────────────────── */
+.catalogo {
+  padding: 120px 60px;
+  background: var(--sage-lt);
+}
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.produto-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.25,.8,.25,1);
+  cursor: pointer;
+}
+.produto-card:hover { transform: translateY(-6px); }
+.produto-card:hover .produto-img img { transform: scale(1.05); }
+.produto-img {
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  position: relative;
+}
+.produto-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  transition: transform .5s cubic-bezier(.25,.8,.25,1);
+  display: block;
+}
+.produto-badge {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--forest); color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 60px;
+}
+.produto-info { padding: 24px 22px 22px; }
+.produto-nome {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--forest); margin-bottom: 6px;
+}
+.produto-desc {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: #8a8a7e; margin-bottom: 18px; line-height: 1.6;
+}
+.produto-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--sage-lt);
+  padding-top: 16px;
+}
+.produto-preco {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20px; font-weight: 400; color: var(--forest);
+}
+.produto-preco sup { font-size: 13px; vertical-align: super; }
+.produto-preco small {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; font-weight: 300;
+  color: var(--sage); margin-left: 4px;
+}
+.produto-btn {
+  background: var(--sage-lt); color: var(--sage-dk);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 8px 18px; border: none; border-radius: 60px;
+  cursor: pointer; transition: background .2s, color .2s;
+}
+.produto-btn:hover { background: var(--forest); color: var(--cream); }
+
+/* ─── ESPECIAL (LUMINOSAS) ──────────────────────────────────── */
+.especial {
+  padding: 120px 60px;
+  background: var(--forest);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center;
+}
+.especial-img-wrap {
+  position: relative;
+}
+.especial-img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover; object-position: center;
+  border-radius: 24px; display: block;
+}
+.especial-glow {
+  position: absolute; inset: -1px;
+  border-radius: 24px;
+  box-shadow: 0 0 60px rgba(240,180,80,0.15);
+  pointer-events: none;
+}
+.especial-text .eyebrow { color: var(--sage); }
+.especial-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--cream); margin-bottom: 24px;
+}
+.especial-title em { font-style: italic; color: var(--sage); }
+.especial-body {
+  font-family: 'Jost', sans-serif;
+  font-size: 15px; font-weight: 300;
+  color: rgba(240,244,236,0.65); line-height: 1.9;
+  margin-bottom: 20px;
+}
+.especial-cta { margin-top: 40px; }
+
+/* ─── DIFERENCIAIS ───────────────────────────────────────────── */
+.diferenciais {
+  padding: 120px 60px;
+  background: var(--cream);
+}
+.dif-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  margin-top: 0;
+}
+.dif-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 28px;
+  border: 1px solid rgba(163,175,154,0.25);
+  transition: transform .3s, box-shadow .3s;
+}
+.dif-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(47,56,42,0.07); }
+.dif-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--sage-lt);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+}
+.dif-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--forest); margin-bottom: 10px;
+}
+.dif-desc {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: #7a7a6e; line-height: 1.8;
+}
+
+/* ─── DEPOIMENTOS ────────────────────────────────────────────── */
+.depoimentos {
+  padding: 120px 60px;
+  background: var(--sage-lt);
+}
+.depo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.depo-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+}
+.depo-stars {
+  color: var(--gold); font-size: 14px;
+  letter-spacing: 3px; margin-bottom: 20px;
+}
+.depo-texto {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px; font-weight: 300; font-style: italic;
+  color: var(--forest); line-height: 1.7;
+  margin-bottom: 28px;
+}
+.depo-autor { display: flex; align-items: center; gap: 14px; }
+.depo-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--sage-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 16px; font-weight: 500; color: var(--sage-dk);
+  flex-shrink: 0;
+}
+.depo-nome {
+  font-family: 'Jost', sans-serif;
+  font-size: 14px; font-weight: 500; color: var(--forest);
+}
+.depo-local {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 300; color: var(--sage);
+}
+
+/* ─── INSTAGRAM STRIP ────────────────────────────────────────── */
+.insta-section {
+  padding: 100px 60px;
+  background: var(--cream);
+}
+.insta-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 40px;
+}
+.insta-head h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 36px; font-weight: 300; color: var(--forest);
+}
+.insta-head h2 em { font-style: italic; color: var(--sage-dk); }
+.insta-link {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sage-dk); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color .2s;
+}
+.insta-link:hover { color: var(--forest); }
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.insta-item {
+  aspect-ratio: 1; border-radius: 12px;
+  overflow: hidden; position: relative; cursor: pointer;
+}
+.insta-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform .4s cubic-bezier(.25,.8,.25,1);
+  display: block;
+}
+.insta-item:hover img { transform: scale(1.07); }
+.insta-overlay {
+  position: absolute; inset: 0;
+  background: rgba(47,56,42,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+}
+.insta-item:hover .insta-overlay { opacity: 1; }
+.insta-overlay span {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 28px; font-weight: 300; color: #fff;
+}
+
+/* ─── CTA FINAL ──────────────────────────────────────────────── */
+.cta-final {
+  padding: 140px 60px;
+  background: var(--forest);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-final::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 120%, rgba(95,111,82,0.35) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-final-eyebrow { color: var(--sage); }
+.cta-final-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(44px, 5.5vw, 76px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--cream); margin-bottom: 24px;
+}
+.cta-final-title em { font-style: italic; color: var(--sage); }
+.cta-final-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px; font-weight: 300;
+  color: rgba(240,244,236,0.6);
+  max-width: 480px; margin: 0 auto 48px;
+  line-height: 1.8;
+}
+.cta-final-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.cta-trust {
+  display: flex; justify-content: center; gap: 40px;
+  margin-top: 52px; flex-wrap: wrap;
+}
+.cta-trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 300;
+  color: rgba(240,244,236,0.45);
+  letter-spacing: 0.06em;
+}
+.cta-trust-item::before {
+  content: '✓';
+  color: var(--sage);
+  font-size: 13px;
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+.footer {
+  background: #1e2419;
+  padding: 72px 60px 40px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; margin-bottom: 60px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--cream); margin-bottom: 16px;
+  display: block; text-decoration: none;
+}
+.footer-logo span { color: var(--sage); font-style: italic; }
+.footer-desc {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,244,236,0.4); line-height: 1.9;
+  max-width: 280px;
+}
+.footer-social { display: flex; gap: 12px; margin-top: 28px; }
+.footer-social a {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(163,175,154,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(240,244,236,0.45); text-decoration: none;
+  transition: border-color .2s, color .2s;
+  font-size: 14px;
+}
+.footer-social a:hover { border-color: var(--sage); color: var(--sage); }
+.footer-col h4 {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 24px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,244,236,0.45);
+  margin-bottom: 12px; cursor: pointer;
+  transition: color .2s;
+}
+.footer-col ul li:hover { color: var(--cream); }
+.footer-col a {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,244,236,0.45);
+  text-decoration: none; display: block;
+  margin-bottom: 12px; transition: color .2s;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  border-top: 1px solid rgba(163,175,154,0.1);
+  padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 300;
+  color: rgba(240,244,236,0.25);
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.25,.8,.25,1), transform .7s cubic-bezier(.25,.8,.25,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ───────────────── RESPONSIVIDADE ───────────────── */
+
+/* FONTES MAIORES */
+body {
+  font-size: 18px;
+}
+
+.hero-subtitle,
+.about-body,
+.section-head p,
+.especial-body,
+.dif-desc,
+.depo-texto,
+.cta-final-sub {
+  font-size: 18px;
+}
+
+/* EFEITOS MAIS SUAVES */
+.produto-card,
+.dif-card,
+.depo-card,
+.insta-item,
+.about-img,
+.especial-img {
+  transition: all .35s ease;
+}
+
+/* CARDS MAIS INTERATIVOS */
+.produto-card:hover,
+.dif-card:hover,
+.depo-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+/* IMAGENS */
+.produto-img img,
+.insta-item img,
+.about-img,
+.especial-img {
+  transition: transform .5s ease;
+}
+
+.produto-card:hover .produto-img img,
+.insta-item:hover img,
+.about-img:hover,
+.especial-img:hover {
+  transform: scale(1.06);
+}
+
+/* BOTÕES */
+.btn-primary,
+.btn-outline,
+.btn-wpp,
+.produto-btn,
+.nav-cta {
+  transition: all .3s ease;
+}
+
+.btn-primary:hover,
+.btn-outline:hover,
+.btn-wpp:hover,
+.produto-btn:hover,
+.nav-cta:hover {
+  transform: translateY(-3px);
+}
+
+/* DIFERENCIAIS */
+.dif-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #eef4e8,
+    #dfe8d7
+  );
+  box-shadow: 0 8px 20px rgba(95,111,82,0.12);
+}
+
+.dif-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* DEPOIMENTOS */
+.depo-card {
+  transition: all .35s ease;
+}
+
+.depo-card:hover {
+  background: #ffffff;
+}
+
+/* NAV MOBILE */
+@media (max-width: 900px) {
+
+  .nav {
+    padding: 18px 24px;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .nav-links {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 120px 0 80px;
+  }
+
+  .hero-content {
+    padding: 0 24px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .about,
+  .especial,
+  .footer-grid,
+  .insta-head {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .catalogo-grid,
+  .dif-grid,
+  .depo-grid,
+  .insta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about,
+  .catalogo,
+  .especial,
+  .diferenciais,
+  .depoimentos,
+  .insta-section,
+  .cta-final,
+  .footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .brand-bar {
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .hero-title {
+    font-size: 56px;
+  }
+
+  .section-head h2,
+  .about-title,
+  .especial-title,
+  .cta-final-title {
+    font-size: 42px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-badge {
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+/* MOBILE PEQUENO */
+@media (max-width: 600px) {
+
+  body {
+    font-size: 17px;
+  }
+
+  .hero-title {
+    font-size: 44px;
+  }
+
+  .hero-subtitle,
+  .about-body,
+  .section-head p,
+  .especial-body,
+  .dif-desc,
+  .cta-final-sub {
+    font-size: 17px;
+  }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-wpp {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .produto-info,
+  .depo-card,
+  .dif-card {
+    padding: 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Jardim <span>das</span> Estações</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#diferenciais">Diferenciais</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.open('https://wa.me/556300000000?text=Olá! Gostaria de fazer um pedido.','_blank')">Fazer Pedido</button>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="hero-video-wrap">
+    <video id="hero-video" autoplay muted playsinline loop preload="auto">
+      <source src="IHC01.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Flores permanentes · Palmas, TO</span>
+    <h1 class="hero-title">
+      Flores que duram
+      <em>para sempre</em>
+    </h1>
+    <p class="hero-subtitle">Arranjos artesanais feitos com amor para transformar qualquer momento em uma lembrança especial.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://wa.me/556300000000?text=Olá! Gostaria de fazer um pedido." target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.5 2.5C6.254 2.5 2 6.75 2 12c0 1.73.46 3.35 1.26 4.75L2 22l5.39-1.41A9.45 9.45 0 0011.5 21.5C16.746 21.5 21 17.25 21 12S16.746 2.5 11.5 2.5z"/></svg>
+        Pedir pelo WhatsApp
+      </a>
+      <a class="btn-outline" href="#catalogo">Ver Catálogo</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ─── BRAND BAR ──────────────────────────────────────────────── -->
+<div class="brand-bar">
+  <div class="brand-bar-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Flores permanentes
+  </div>
+  <div class="brand-bar-sep"></div>
+  <div class="brand-bar-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    100% artesanal
+  </div>
+  <div class="brand-bar-sep"></div>
+  <div class="brand-bar-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Entrega em Palmas, TO
+  </div>
+  <div class="brand-bar-sep"></div>
+  <div class="brand-bar-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+    Personalizado
+  </div>
+</div>
+
+<!-- ─── SOBRE ──────────────────────────────────────────────────── -->
+<section class="about" id="sobre">
+  <div class="about-image-wrap reveal">
+    <img class="about-img" src="prod1.jpg" alt="Bouquet artesanal vermelho Jardim Estações">
+    <div class="about-badge">
+      <strong>+200</strong>
+      <span>clientes felizes</span>
+    </div>
+  </div>
+  <div class="about-text reveal reveal-delay-1">
+    <span class="eyebrow">Nossa história</span>
+    <h2 class="about-title">
+      Feito com amor,<br>
+      <em>pétala a pétala</em>
+    </h2>
+    <p class="about-body">Cada arranjo nasce de um cuidado que vai além das flores. O Jardim Estações foi criado com a missão de eternizar momentos — transformando flores permanentes em memórias afetivas que duram para sempre.</p>
+    <p class="about-body">Nossos buquês são montados à mão, um a um, com flores de altíssima qualidade que mantêm sua beleza sem água, sem manutenção e sem se despedir.</p>
+    <div class="about-tags">
+      <span class="about-tag">Flores permanentes</span>
+      <span class="about-tag">Feito à mão</span>
+      <span class="about-tag">Personalizado</span>
+      <span class="about-tag">Sob encomenda</span>
+      <span class="about-tag">Palmas, TO</span>
+    </div>
+    <div class="about-cta">
+      <a class="btn-primary" href="https://wa.me/556300000000?text=Olá! Quero saber mais sobre os arranjos." target="_blank">Falar conosco</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CATÁLOGO ──────────────────────────────────────────────── -->
+<section class="catalogo" id="catalogo">
+  <div class="section-head reveal">
+    <span class="eyebrow" style="color:var(--sage-dk);">Catálogo</span>
+    <h2>Nossos <em>arranjos</em></h2>
+    <p>Cada peça é única. Criamos para o seu momento especial.</p>
+  </div>
+  <div class="catalogo-grid">
+    <div class="produto-card reveal">
+      <div class="produto-img">
+        <img src="prod5.jpg" alt="Buquê Girassol">
+        <span class="produto-badge">⭐ Mais vendido</span>
+      </div>
+      <div class="produto-info">
+        <p class="produto-nome">Buquê Girassol</p>
+        <p class="produto-desc">Girassóis vibrantes com margaridas — alegria e leveza para qualquer ocasião.</p>
+        <div class="produto-footer">
+          <span class="produto-preco"><sup>R$</sup> 89 <small>em diante</small></span>
+          <button class="produto-btn" onclick="window.open('https://wa.me/556300000000?text=Olá! Tenho interesse no Buquê Girassol.','_blank')">Pedir</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card reveal reveal-delay-1">
+      <div class="produto-img">
+        <img src="prod2.jpg" alt="Bouquet Rouge">
+        <span class="produto-badge">💝 Para presentear</span>
+      </div>
+      <div class="produto-info">
+        <p class="produto-nome">Bouquet Rouge</p>
+        <p class="produto-desc">Composição rica em tons vermelhos e vinho com embalagem acetinada premium.</p>
+        <div class="produto-footer">
+          <span class="produto-preco"><sup>R$</sup> 120 <small>em diante</small></span>
+          <button class="produto-btn" onclick="window.open('https://wa.me/556300000000?text=Olá! Tenho interesse no Bouquet Rouge.','_blank')">Pedir</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card reveal reveal-delay-2">
+      <div class="produto-img">
+        <img src="prod3.jpg" alt="Tulipas Rústicas">
+      </div>
+      <div class="produto-info">
+        <p class="produto-nome">Tulipas Rústicas</p>
+        <p class="produto-desc">Tulipas e rosas em papel kraft natural — elegância com toque artesanal.</p>
+        <div class="produto-footer">
+          <span class="produto-preco"><sup>R$</sup> 95 <small>em diante</small></span>
+          <button class="produto-btn" onclick="window.open('https://wa.me/556300000000?text=Olá! Tenho interesse nas Tulipas Rústicas.','_blank')">Pedir</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card reveal">
+      <div class="produto-img">
+        <img src="prod8.jpg" alt="Bouquet Primavera">
+        <span class="produto-badge">🌿 Novo</span>
+      </div>
+      <div class="produto-info">
+        <p class="produto-nome">Bouquet Primavera</p>
+        <p class="produto-desc">Tulipas vermelhas e flores do campo em embalagem kraft — frescor eterno.</p>
+        <div class="produto-footer">
+          <span class="produto-preco"><sup>R$</sup> 85 <small>em diante</small></span>
+          <button class="produto-btn" onclick="window.open('https://wa.me/556300000000?text=Olá! Tenho interesse no Bouquet Primavera.','_blank')">Pedir</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card reveal reveal-delay-1">
+      <div class="produto-img">
+        <img src="prod6.jpg" alt="Lírios Tropicais">
+      </div>
+      <div class="produto-info">
+        <p class="produto-nome">Lírios Tropicais</p>
+        <p class="produto-desc">Lírios alaranjados vibrantes em embalagem preta lacrada — impacto e sofisticação.</p>
+        <div class="produto-footer">
+          <span class="produto-preco"><sup>R$</sup> 130 <small>em diante</small></span>
+          <button class="produto-btn" onclick="window.open('https://wa.me/556300000000?text=Olá! Tenho interesse nos Lírios Tropicais.','_blank')">Pedir</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card reveal reveal-delay-2">
+      <div class="produto-img">
+        <img src="prod7.jpg" alt="Jardim Azul">
+        <span class="produto-badge">✨ Exclusivo</span>
+      </div>
+      <div class="produto-info">
+        <p class="produto-nome">Jardim Azul</p>
+        <p class="produto-desc">Composição única em tons azuis, amarelo e branco — delicadeza e personalidade.</p>
+        <div class="produto-footer">
+          <span class="produto-preco"><sup>R$</sup> 110 <small>em diante</small></span>
+          <button class="produto-btn" onclick="window.open('https://wa.me/556300000000?text=Olá! Tenho interesse no Jardim Azul.','_blank')">Pedir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ESPECIAL LUMINOSAS ────────────────────────────────────── -->
+<section class="especial">
+  <div class="especial-img-wrap reveal">
+    <img class="especial-img" src="prod4.jpg" alt="Flores Luminosas Jardim Estações">
+    <div class="especial-glow"></div>
+  </div>
+  <div class="especial-text reveal reveal-delay-1">
+    <span class="eyebrow">Peça exclusiva</span>
+    <h2 class="especial-title">
+      Flores que<br><em>iluminam</em>
+    </h2>
+    <p class="especial-body">Uma criação única do Jardim Estações: flores permanentes com LED embutido que emanam uma luz quente e encantadora. Decoração, presente e arte em uma só peça.</p>
+    <p class="especial-body">Cada flor luminosa é montada à mão e pode ser personalizada nas cores e modelos da sua escolha.</p>
+    <div class="especial-cta">
+      <a class="btn-primary" style="background:var(--sage-lt);color:var(--forest);" href="https://wa.me/556300000000?text=Olá! Quero saber mais sobre as flores luminosas." target="_blank">Quero essa peça</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DIFERENCIAIS ──────────────────────────────────────────── -->
+<section class="diferenciais" id="diferenciais">
+  <div class="section-head reveal">
+    <span class="eyebrow">Por que escolher</span>
+    <h2>O que nos <em>diferencia</em></h2>
+  </div>
+  <div class="dif-grid">
+    <div class="dif-card reveal">
+      <div class="dif-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6f52" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 class="dif-title">Flores permanentes</h3>
+      <p class="dif-desc">Sem água, sem manutenção. Beleza que preserva a memória do momento por anos.</p>
+    </div>
+    <div class="dif-card reveal reveal-delay-1">
+      <div class="dif-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6f52" stroke-width="1.5"><path d="M7 11l5-5 5 5M7 17l5-5 5 5"/></svg>
+      </div>
+      <h3 class="dif-title">100% artesanal</h3>
+      <p class="dif-desc">Criamos cada arranjo manualmente com delicadeza e precisão, garantindo beleza artesanal sem longas esperas.</p>
+    </div>
+    <div class="dif-card reveal reveal-delay-2">
+      <div class="dif-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6f52" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <h3 class="dif-title">Personalizado</h3>
+      <p class="dif-desc">Escolha cores, flores e estilo. Criamos o arranjo exato que você imagina.</p>
+    </div>
+    <div class="dif-card reveal reveal-delay-3">
+      <div class="dif-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6f52" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h3 class="dif-title">Entrega em Palmas</h3>
+      <p class="dif-desc">Atendemos toda Palmas (TO) com embrulho especial e entrega com cuidado.</p>
+    </div>
+  </div>
+</section>
+
+<div class="depo-grid">
+
+  <div class="depo-card reveal">
+    <div class="depo-stars">★★★★★</div>
+    <p class="depo-texto">
+      "Achei incrível como as flores são sofisticadas e ao mesmo tempo práticas. Ficaram perfeitas na decoração da minha sala."
+    </p>
+    <div class="depo-autor">
+      <div class="depo-avatar">LC</div>
+      <div>
+        <p class="depo-nome">Larissa Costa</p>
+        <p class="depo-local">Arquiteta • Palmas, TO</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="depo-card reveal reveal-delay-1">
+    <div class="depo-stars">★★★★★</div>
+    <p class="depo-texto">
+      "Comprei para presentear minha esposa e ela ficou emocionada. O acabamento é lindo e parece flor natural."
+    </p>
+    <div class="depo-autor">
+      <div class="depo-avatar">RM</div>
+      <div>
+        <p class="depo-nome">Rafael Mendes</p>
+        <p class="depo-local">Empresário • Palmas, TO</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="depo-card reveal reveal-delay-2">
+    <div class="depo-stars">★★★★★</div>
+    <p class="depo-texto">
+      "A entrega foi super rápida e o arranjo chegou impecável. Já indiquei para várias amigas."
+    </p>
+    <div class="depo-autor">
+      <div class="depo-avatar">BF</div>
+      <div>
+        <p class="depo-nome">Bruna Ferreira</p>
+        <p class="depo-local">Designer • Palmas, TO</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─── INSTAGRAM ──────────────────────────────────────────────── -->
+<section class="insta-section">
+  <div class="insta-head reveal">
+    <div>
+      <span class="eyebrow">Siga nas redes</span>
+      <h2 class="serif" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;font-weight:300;color:var(--forest);">@jardim.estacoes no <em style="font-style:italic;color:var(--sage-dk);">Instagram</em></h2>
+    </div>
+    <a class="insta-link" href="https://www.instagram.com/jardim.estacoes" target="_blank">
+      Seguir ↗
+    </a>
+  </div>
+  <div class="insta-grid reveal">
+    <div class="insta-item">
+      <img src="prod2.jpg" alt="Jardim Estações Instagram">
+      <div class="insta-overlay"><span>♡</span></div>
+    </div>
+    <div class="insta-item">
+      <img src="prod5.jpg" alt="Jardim Estações Instagram">
+      <div class="insta-overlay"><span>♡</span></div>
+    </div>
+    <div class="insta-item">
+      <img src="prod6.jpg" alt="Jardim Estações Instagram">
+      <div class="insta-overlay"><span>♡</span></div>
+    </div>
+    <div class="insta-item">
+      <img src="prod7.jpg" alt="Jardim Estações Instagram">
+      <div class="insta-overlay"><span>♡</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA FINAL ──────────────────────────────────────────────── -->
+<section class="cta-final">
+  <span class="eyebrow cta-final-eyebrow">Pronta para encantar?</span>
+  <h2 class="cta-final-title">Faça seu pedido <em>agora</em></h2>
+  <p class="cta-final-sub">Envie uma mensagem e vamos criar juntas o arranjo perfeito para o seu momento especial.</p>
+  <div class="cta-final-actions">
+    <a class="btn-wpp" href="https://wa.me/556300000000?text=Olá! Gostaria de fazer um pedido." target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.5 2.5C6.254 2.5 2 6.75 2 12c0 1.73.46 3.35 1.26 4.75L2 22l5.39-1.41A9.45 9.45 0 0011.5 21.5C16.746 21.5 21 17.25 21 12S16.746 2.5 11.5 2.5z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+  <div class="cta-trust">
+    <span class="cta-trust-item">Resposta rápida</span>
+    <span class="cta-trust-item">Personalização grátis</span>
+    <span class="cta-trust-item">Entrega em Palmas</span>
+    <span class="cta-trust-item">Pagamento facilitado</span>
+  </div>
+</section>
+
+<!-- ─── FOOTER ──────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">Jardim <span>das</span> Estações</a>
+      <p class="footer-desc">Flores permanentes artesanais feitas com amor em Palmas, Tocantins. Cada peça é única, como o seu momento.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/jardim.estacoes" target="_blank" title="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://wa.me/556300000000" target="_blank" title="WhatsApp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.5 2.5C6.254 2.5 2 6.75 2 12c0 1.73.46 3.35 1.26 4.75L2 22l5.39-1.41A9.45 9.45 0 0011.5 21.5C16.746 21.5 21 17.25 21 12S16.746 2.5 11.5 2.5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li onclick="document.getElementById('inicio').scrollIntoView({behavior:'smooth'})">Início</li>
+        <li onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Catálogo</li>
+        <li onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">Sobre nós</li>
+        <li onclick="document.getElementById('depoimentos').scrollIntoView({behavior:'smooth'})">Depoimentos</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Produtos</h4>
+      <ul>
+        <li>Buquês artesanais</li>
+        <li>Flores luminosas</li>
+        <li>Encomenda especial</li>
+        <li>Decoração</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="https://wa.me/556300000000" target="_blank">📱 WhatsApp</a>
+      <a href="https://www.instagram.com/jardim.estacoes" target="_blank">📸 @jardim.estacoes</a>
+      <a href="#">📍 Palmas, TO</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Jardim das Estações · Todos os direitos reservados</span>
+    <span class="footer-copy">Feito em Palmas, TO</span>
+  </div>
+</footer>
+
+<!-- ─── SCRIPTS ────────────────────────────────────────────────── -->
+<script>
+/* ── Nav scroll ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── Video seamless loop ──
+   Seek back 0.12s before end so the browser
+   can refill the buffer before the actual loop point,
+   eliminating the 1-frame blank on most decoders. */
+const video = document.getElementById('hero-video');
+video.addEventListener('timeupdate', () => {
+  if (video.duration && video.currentTime >= video.duration - 0.15) {
+    video.currentTime = 0.05;
+  }
+});
+/* Fallback: if ended fires, restart immediately */
+video.addEventListener('ended', () => { video.currentTime = 0; video.play(); });
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
